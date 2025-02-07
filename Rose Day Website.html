@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day</title>
+    <style>
+        .message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full screen height */
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe4e1;
+            overflow-x: hidden; /* Prevents horizontal scrolling but allows vertical */
+            overflow-y: auto; /* Enables vertical scrolling */
+            min-height: 100vh;
+        }
+        .rose {
+            width: 100px;
+            height: 100px;
+            background: url('https://i.imgur.com/q77zDby.png') no-repeat center;
+            background-size: contain;
+            margin: 20px auto;
+            animation: float 2s infinite alternate ease-in-out;
+        }
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .falling-rose {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Rose_pink.png/200px-Rose_pink.png') no-repeat center;
+
+            background-size: contain;
+            animation: fall 5s linear infinite;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .question {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .yes-btn, .no-btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes-btn {
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+        .no-btn {
+            background-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <img src="peony2.png" alt="Rose Image" style="transform: translate(5px,120px);">
+    <script>
+        function createFallingRoses() {
+    for (let i = 0; i < 15; i++) {
+        let rose = document.createElement("div");
+        rose.classList.add("falling-rose");
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.top = -Math.random() * 100 + "px"; // Start slightly above viewport
+        rose.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(rose);
+    }
+}
+createFallingRoses();
+
+    </script>
+    <div class="rose"></div>
+    <div class="container">
+        <div class="question">Do you accept the PEONY?</div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="acceptRose()">YES</button>
+            <button class="no-btn" onclick="rejectRose()">NO</button>
+        </div>
+    </div>
+    <script>
+        let yesButton = document.querySelector('.yes-btn');
+        let noButton = document.querySelector('.no-btn');
+        let fontSize = 18;
+        
+        function acceptRose() {
+            document.body.innerHTML = `
+                <div class="message">
+                <h1>YEYY!! I KNEW YOU WOULD SAY YES! 🌹❤️</h1>
+                </div>
+            `;
+        }
+
+        
+        function rejectRose() {
+            fontSize += 10;
+            yesButton.style.fontSize = fontSize + 'px';
+            
+            if (noButton.innerText === "NO") {
+                noButton.innerText = "ARE YOU SURE??";
+            } else {
+                noButton.innerText = "REALLY SURE??";
+            }
+            
+            if (fontSize > 100) {
+                yesButton.style.width = '100vw';
+                yesButton.style.height = '100vh';
+                yesButton.innerText = "NO ESCAPE! ACCEPT IT!";
+            }
+        }
+    </script>
+</body>
+</html>
