@@ -321,4 +321,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-PRACTICAL6
+PRACTICAL8
+if error then res>values>theme>style.xml and paste this :
+    <style name="Theme.Service" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Define colors, fonts, etc. here -->
+    </style>
